@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search and Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: aquamarine;
+        }
+        .filter-container {
+            margin-bottom: 20px;
+        }
+        .filter-container div {
+            margin-bottom: 10px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search and Filter Products</h1>
+    <div class="filter-container">
+        <div>
+            <label for="search">Search:</label>
+            <input type="text" id="search" oninput="filterProducts()">
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <select id="category" onchange="filterProducts()">
+                <option value="">All</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="books">Books</option>
+            </select>
+        </div>
+        <div>
+            <label for="price-min">Price Range:</label>
+            <input type="number" id="price-min" placeholder="Min" oninput="filterProducts()">
+            <input type="number" id="price-max" placeholder="Max" oninput="filterProducts()">
+        </div>
+        <div>
+            <label for="location">Location:</label>
+            <input type="text" id="location" oninput="filterProducts()">
+        </div>
+        <div>
+            <label for="rating">Rating:</label>
+            <select id="rating" onchange="filterProducts()">
+                <option value="">All</option>
+                <option value="4">4 stars & up</option>
+                <option value="3">3 stars & up</option>
+                <option value="2">2 stars & up</option>
+                <option value="1">1 star & up</option>
+            </select>
+        </div>
+    </div>
+    <div id="product-list"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

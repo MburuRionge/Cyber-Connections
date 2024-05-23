@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple User Authentication</title>
+    <title><h1>Cyber Connections</h1></title>
+    <title><h2>User Authentication</h2></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -43,9 +45,30 @@
         .error {
             color: red;
         }
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <p>Welcome to Cyber Connections platform.</p>
+    <p>We help organizations to secure their operations by connecting them to cyber security firms and cyber security experts and vice verser. To access our services wew will need you to fill out the form below. THANK YOU.
+    </p>
     <div class="login-container">
         <h2>Login</h2>
         <div id="error-message" class="error"></div>
@@ -53,7 +76,59 @@
         <input type="password" id="password" placeholder="Password">
         <button onclick="authenticate()">Login</button>
     </div>
-
+    <h2>User authentication</h2>
+    <form id="loginForm" onsubmit="authenticate(event)">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="password" required>
+        <input type="submit" value="Sign In">
+    </form>
+    
     <script src="app.js"></script>
+    <script>
+        function authenticate(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            //here code to send username and password to a server for authentication
+            //lets us do a simple check for demonstration purposes
+            if (username === 'user' && password === 'password') {
+                alert('Authentication successful!');
+                // Redirect to another page or perform further actions
+            } else {
+                alert('Authentication failed. Please check your username and password.');
+            }
+        }    
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').submit(function(e) {
+                e.preventDefault();
+
+                var username = $('#username').val();
+                var password = $('#password').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'my_authentication_endpoint_url',
+                    data: {
+                        username: username,
+                        password: password
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Authentication successful!');
+                            // Redirect to another page or perform further actions
+                        } else {
+                            alert('Authentication failed. please check your username and password.');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
